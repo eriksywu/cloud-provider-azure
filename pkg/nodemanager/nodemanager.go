@@ -395,6 +395,7 @@ func (cnc *CloudNodeController) initializeNode(ctx context.Context, node *v1.Nod
 	})
 	if err != nil {
 		utilruntime.HandleError(err)
+		cnc.recorder.Eventf(node, v1.EventTypeWarning, "FailedToUpdateNewNode", err.Error())
 		return
 	}
 }
